@@ -1,0 +1,16 @@
+{
+  "CHURCH": {
+    "JORDAN": [
+      { "model": "Sarmi", "price": 150 },
+      { "model": "Mani", "price": 250 }
+    ],
+    "JOSHUA": [
+      { "model": "Bishna", "price": 180 }
+    ]
+  },
+  "MANDALI": {
+    "BETHEL": [
+      { "model": "Ram", "price": 400 }
+    ]
+  }
+}

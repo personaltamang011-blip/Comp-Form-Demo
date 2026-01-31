@@ -1,0 +1,16 @@
+{
+  "CPU": {
+    "Intel": [
+      { "model": "i5-12400", "price": 150 },
+      { "model": "i7-12700", "price": 250 }
+    ],
+    "AMD": [
+      { "model": "Ryzen 5 5600X", "price": 180 }
+    ]
+  },
+  "GPU": {
+    "NVIDIA": [
+      { "model": "RTX 3060", "price": 400 }
+    ]
+  }
+}
