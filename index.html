@@ -12,7 +12,9 @@ body{min-height:100vh;display:flex;justify-content:center;align-items:center;bac
 .form-group{position:relative;margin-bottom:20px}
 .form-group input,.form-group select{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;outline:none;background:transparent}
 .form-group label{position:absolute;top:50%;left:12px;transform:translateY(-50%);color:#666;font-size:16px;pointer-events:none;transition:0.3s ease all;background:#fff;padding:0 5px}
-.form-group input:focus + label,.form-group input:not(:placeholder-shown) + label,.form-group select:focus + label,.form-group select:not([value=""]) + label{top:0;font-size:13px;color:#0078d7}
+.form-group input:focus + label,.form-group input:not(:placeholder-shown) + label,.form-group select:focus + label,.form-group select:not([value=""]) + label{top:0;font-size:13px;color:#149b6393}
+
+
 button{width:100%;padding:12px;background-color:#585f66;color:white;border:none;border-radius:8px;cursor:pointer;font-size:16px}
 button:hover{background-color:#248363}
 body.dark{background:linear-gradient(135deg,#232526,#414345)}
@@ -20,7 +22,7 @@ body.dark .form-container{background:#2c2c2c;color:#f5f5f5}
 body.dark input,body.dark select{border:1px solid #555;color:#fff}
 body.dark label{background:#2c2c2c;color:#bbb}
 body.dark button{background:#ff9800;color:#000}
-.toggle-mode{margin-top:15px;text-align:center;cursor:pointer;font-size:14px;color:#0078d7}
+.toggle-mode{margin-top:15px;text-align:center;cursor:pointer;font-size:14px;color:#758a9b}
 body.dark .toggle-mode{color:#ff9800}
 </style>
 </head>
@@ -30,6 +32,13 @@ body.dark .toggle-mode{color:#ff9800}
 <h2>Computer Parts Entry</h2>
 
 <form name="contact-form">
+
+<!-- ✅ New Date Input (Optional, Typable Nepali Date) -->
+<div class="form-group">
+  <input type="text" name="date" placeholder=" ">
+  <label>Date (Nepali)</label>
+</div>
+
 <div class="form-group">
 <select name="category" id="category" required>
 <option value="" disabled selected></option>
@@ -63,13 +72,12 @@ body.dark .toggle-mode{color:#ff9800}
 
 <button type="submit">Submit</button>
 </form>
+
 <div class="toggle-mode" id="toggleMode">🌙 Switch to Dark Mode</div>
 </div>
 
 <script>
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxjoTZMaxtqgITeTnktuODWfUFXgchfytszx2x19PhKkhA21IuRyKfFk2Pd_UZ6hb_c/exec';
-
-// Support multiple JSON datasets
 
 const jsonFiles = ["data.computer.json", "data.organization.json"];
 let combinedData = {};
@@ -88,7 +96,6 @@ async function loadData() {
       combinedData = { ...combinedData, ...data };
     }
 
-    // Populate category dropdown
     categorySel.innerHTML =
       `<option value="" disabled selected>Select Category</option>`;
 
@@ -139,9 +146,7 @@ modelSel.onchange = () => {
   priceInput.value = opt.dataset.price || "";
 };
 
-
-
-// form submit → Google Sheets API
+// Submit to Google Sheets
 const form = document.forms['contact-form'];
 form.addEventListener('submit', e=>{
     e.preventDefault();
@@ -151,7 +156,7 @@ form.addEventListener('submit', e=>{
     .catch(err=>console.error(err));
 });
 
-// dark mode toggle
+// Dark mode toggle
 const toggleBtn = document.getElementById('toggleMode');
 toggleBtn.addEventListener('click',()=>{
     document.body.classList.toggle('dark');
